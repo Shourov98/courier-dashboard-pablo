@@ -49,7 +49,7 @@ export default function RecentActivity() {
         {bookings.map((booking) => (
           <div
             key={booking.id}
-            className="flex flex-col justify-between w-[488px] h-[417px] border border-[#AEAEAE] rounded-xl bg-white p-8"
+            className="flex flex-col justify-between w-3/7 h-[417px] border border-[#AEAEAE] rounded-xl bg-white p-8"
           >
             {/* Header */}
             <div className="flex justify-between items-start">

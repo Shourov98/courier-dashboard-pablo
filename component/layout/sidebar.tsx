@@ -21,7 +21,7 @@ import {
 const menu = {
   main: [
     { label: "Dashboard", icon: LayoutDashboard, path: "/dashboard/dashboard" },
-    { label: "Analytics", icon: BarChart2, path: "/dashboard/analytics" },
+    { label: "Analytics", icon: BarChart2, path: "/dashboard/analysis" },
     { label: "Notifications", icon: Bell, path: "/dashboard/notifications" },
   ],
   booking: [

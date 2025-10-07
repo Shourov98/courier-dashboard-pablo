@@ -1,23 +1,26 @@
 "use client";
 import { useState } from "react";
-import {  HugeiconsIcon } from "@hugeicons/react";
-import { Edit01FreeIcons } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { PencilEdit02Icon } from "@hugeicons/core-free-icons";
+import Link from "next/link";
 
 export default function ProfileInfo() {
   const [isEditing, setIsEditing] = useState(false);
 
   return (
-    <div className="w-full max-w-[1000px] font-[Poppins] text-[#212121] mt-10">
+    <div className="w-full w-full font-[Poppins] text-[#212121] mt-10">
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-[28px] md:text-[32px] font-semibold">Profile Info</h2>
-        <button
-          onClick={() => setIsEditing(!isEditing)}
-          className="flex items-center gap-2 bg-[#FFCF00] text-[#212121] font-medium px-4 py-2 rounded-xl hover:bg-[#FFD633] transition"
-        >
-          <HugeiconsIcon icon={Edit01FreeIcons} className="w-5 h-5" />
-          <span>Edit</span>
-        </button>
+        <Link href="/dashboard/profileEdit">
+          <button
+            onClick={() => setIsEditing(!isEditing)}
+            className="flex items-center gap-2 bg-[#FFCF00] text-[#212121] font-medium px-4 py-2 rounded-xl hover:bg-[#FFD633] transition"
+          >
+            <HugeiconsIcon icon={PencilEdit02Icon} className="w-5 h-5" />
+            <span>Edit</span>
+          </button>
+        </Link>
       </div>
 
       {/* Personal Info Section */}
@@ -49,7 +52,7 @@ export default function ProfileInfo() {
       <div className="mt-8 border border-[#E5E5E5] rounded-xl p-5 flex flex-col gap-6 bg-white">
         <h3 className="text-[20px] font-semibold">Stripe Settings</h3>
         <div className="flex flex-col gap-4">
-          <InputField label="Publishable Key" required placeholder="Publishable Key" value="pk_test_123456" />
+          <InputField label="Publishable Key" required placeholder="Publishable Key" value="pk_test_123456"/>
           <InputField label="Secret Key" required placeholder="Secret Key" value="sk_test_654321" />
           <InputField label="Webhook URL" required placeholder="Webhook URL" value="https://example.com/webhook" />
         </div>
@@ -105,7 +108,7 @@ function SelectField({
       </label>
       <select
         value={value}
-        readOnly
+        disabled
         className="h-[52px] border border-[#E5E5E5] rounded-xl px-4 text-[#212121] bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-[#FFCF00]"
       >
         <option>{value}</option>
