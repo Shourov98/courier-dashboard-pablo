@@ -8,6 +8,7 @@ import {
   ArrowUp01Icon,
 } from "@hugeicons/core-free-icons";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import Link from "next/link";
 
 export default function Bookings() {
   const [serviceFilter, setServiceFilter] = useState("All");
@@ -206,14 +207,16 @@ export default function Bookings() {
 
               {/* Actions */}
               <div className="flex items-center justify-center gap-8 w-[200px] text-[#212121]">
+                <Link href="/dashboard/bookings/234/edit">
                 <HugeiconsIcon
                   icon={PencilEdit02Icon}
                   className="w-6 h-6 cursor-pointer hover:text-blue-600"
                 />
-                <HugeiconsIcon
+                </Link>
+                <Link href="/dashboard/bookings/234"><HugeiconsIcon
                   icon={ViewIcon}
                   className="w-6 h-6 cursor-pointer hover:text-green-600"
-                />
+                /></Link>
                 <HugeiconsIcon
                   icon={Delete02Icon}
                   className="w-6 h-6 cursor-pointer text-red-600"
