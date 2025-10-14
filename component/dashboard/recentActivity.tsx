@@ -42,18 +42,22 @@ const bookings: Booking[] = [
 
 export default function RecentActivity() {
   return (
-    <div className="flex flex-col gap-8 w-full   mt-12">
-      <h2 className="text-[40px] font-semibold text-[#212121]">Recent Activity</h2>
+    <div className="flex flex-col gap-8 w-full  mt-12">
+      <h2 className="text-[40px] font-semibold text-[#212121]">
+        Recent Activity
+      </h2>
 
       <div className="flex flex-wrap gap-8">
         {bookings.map((booking) => (
           <div
             key={booking.id}
-            className="flex flex-col justify-between w-3/7 h-[417px] border border-[#AEAEAE] rounded-xl bg-white p-8"
+            className="flex flex-col justify-between w-20/41 h-[417px] border border-[#AEAEAE] rounded-xl bg-white p-8"
           >
             {/* Header */}
             <div className="flex justify-between items-start">
-              <h3 className="text-[28px] font-semibold text-[#212121]">Summary</h3>
+              <h3 className="text-[28px] font-semibold text-[#212121]">
+                Summary
+              </h3>
 
               <div className="flex flex-col items-end gap-3">
                 <div
@@ -86,7 +90,9 @@ export default function RecentActivity() {
 
             {/* Content */}
             <div className="flex flex-col gap-3">
-              <h4 className="text-[18px] font-semibold text-[#212121]">{booking.name}</h4>
+              <h4 className="text-[18px] font-semibold text-[#212121]">
+                {booking.name}
+              </h4>
 
               {/* Date & Time */}
               <div className="flex items-center gap-8 text-[#717171] text-xs">
@@ -110,8 +116,8 @@ export default function RecentActivity() {
               <div className="flex items-center gap-2 text-[#717171]">
                 <MapPin size={20} />
                 <span className="text-base">{booking.pickup}</span>
-                <MoreVertical size={18} className="text-[#212121]" />
               </div>
+              <MoreVertical size={18} className="text-[#212121] gap-y-0" />
               {/* Drop Address */}
               <div className="flex items-center gap-2 text-[#212121]">
                 <MapPin size={20} className="text-[#B59300]" />
