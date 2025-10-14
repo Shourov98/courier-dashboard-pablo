@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, InputHTMLAttributes } from "react";
+import React, { useState, useEffect, InputHTMLAttributes } from "react";
 
 interface FloatingInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -18,8 +18,13 @@ export const Input: React.FC<FloatingInputProps> = ({
   const [focused, setFocused] = useState(false);
   const [internalValue, setInternalValue] = useState(value);
 
+  // Keep internal value in sync when external `value` changes
+  useEffect(() => {
+    setInternalValue(value);
+  }, [value]);
+
   const val = value !== undefined ? value : internalValue;
-  const shouldFloat = focused || val.length > 0;
+  const shouldFloat = focused || val.trim().length > 0;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const v = e.target.value;
@@ -36,7 +41,7 @@ export const Input: React.FC<FloatingInputProps> = ({
         onChange={handleChange}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
-        placeholder=" " // keep placeholder to trigger peer styling
+        placeholder=" " // placeholder kept to help spacing
         className={`peer w-full border border-gray-300 rounded-md px-3 pt-6 pb-3 text-base outline-none transition-all duration-200
           focus:border-gray-800 focus:ring-1 focus:ring-gray-800 disabled:bg-white`}
       />
@@ -44,10 +49,12 @@ export const Input: React.FC<FloatingInputProps> = ({
       {/* Floating label */}
       {label && (
         <label
-          className={`absolute left-3 top-4 text-gray-500 text-base transition-all duration-200 bg-white px-1
-          pointer-events-none 
-          peer-focus:top-0 peer-focus:left-2 peer-focus:text-sm peer-focus:text-gray-800
-          ${shouldFloat ? "top-0 left-2 text-sm text-gray-800" : ""}`}
+          className={`absolute left-3 bg-white px-1 text-gray-500 transition-all duration-200 pointer-events-none
+          ${
+            shouldFloat
+              ? "top-1 text-xs text-gray-500"
+              : "top-4 text-base text-gray-500"
+          }`}
         >
           {label}
         </label>
