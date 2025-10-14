@@ -36,7 +36,13 @@ const menu = {
       ],
     },
   ],
-  pricing: [{ label: "Unit & Pricing", icon: DollarSign, path: "/dashboard/pricing" }],
+  pricing: [
+    {
+      label: "Unit & Pricing",
+      icon: DollarSign,
+      path: "/dashboard/unit&pricing",
+    },
+  ],
   personal: [
     { label: "Profile", icon: User, path: "/dashboard/profile" },
     { label: "Logout", icon: LogOut, danger: true, path: "/auth/signin" },
@@ -104,7 +110,11 @@ const Sidebar = () => {
     else setOpenDropdowns([]);
   };
 
-  const renderItem = (item: MenuItem, isChild = false, parentLabel?: string) => {
+  const renderItem = (
+    item: MenuItem,
+    isChild = false,
+    parentLabel?: string
+  ) => {
     const hasChildren = item.children && item.children.length > 0;
     const isDropdownOpen = openDropdowns.includes(item.label);
     const isActive = activeItem === item.label;
@@ -149,7 +159,9 @@ const Sidebar = () => {
 
   const SidebarContent = () => (
     <aside className="w-full sm:w-72 md:w-80 lg:w-[336px] min-h-screen flex flex-col gap-6 p-4 bg-white shadow-sm font-[Poppins]">
-      <Section title="Main">{menu.main.map((item) => renderItem(item))}</Section>
+      <Section title="Main">
+        {menu.main.map((item) => renderItem(item))}
+      </Section>
       <Section title="Booking & Services">
         {menu.booking.map((item) => renderItem(item))}
       </Section>
