@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { HugeiconsIcon } from "@hugeicons/react";
-import Logo from "@/public/Tele-Portes Logo.svg"
+import Logo from "@/public/Tele-Portes Logo.svg";
 import Image from "next/image";
 import {
   ArrowDown01Icon,
@@ -12,28 +12,22 @@ import {
   UserIcon,
 } from "@hugeicons/core-free-icons";
 
-
 const Navbar: React.FC = () => {
   const [isAvatarDropdownOpen, setIsAvatarDropdownOpen] = useState(false);
 
   const router = useRouter();
 
-
   const toggleAvatarDropdown = () => {
-      setIsAvatarDropdownOpen(!isAvatarDropdownOpen);
-    
+    setIsAvatarDropdownOpen(!isAvatarDropdownOpen);
   };
 
-
   return (
-    <div className="p-0 mb-10 md:relative top-5  md:left-1/2 md:transform md:-translate-x-1/2  md:h-[116px] w-full bg-[#FFFAE6]">
+    <div className="p-0 mb-10 md:relative top-5 md:left-1/2 md:transform md:-translate-x-1/2  md:h-[116px] w-full bg-[#FFFAE6]">
       <nav className="flex justify-between m-0 p-0 items-center px-4 md:px-16 py-4 md:py-8 w-full h-full bg-[#FFFAE6]">
-       
-        <Image src={Logo} alt="Logo"  width={256} />
+        <Image src={Logo} alt="Logo" width={256} />
 
         {/* Desktop + Medium Menu */}
         <div className="hidden md:flex items-center gap-16 lg:gap-18 w-auto ">
-          
           <div>
             <div
               className="flex items-center gap-2 px-6 py-3 bg-yellow-400 hover:bg-yellow-500 rounded-xl transition-colors"
@@ -44,13 +38,11 @@ const Navbar: React.FC = () => {
               <HugeiconsIcon
                 icon={ArrowDown01Icon}
                 className={`w-6 h-6 text-gray-900 transition-transform ${
-                  isAvatarDropdownOpen 
-                    ? "rotate-180"
-                    : ""
+                  isAvatarDropdownOpen ? "rotate-180" : ""
                 }`}
               />
             </div>
-            {isAvatarDropdownOpen  && (
+            {isAvatarDropdownOpen && (
               <div className="absolute top-20 pr-5 mt-2 bg-[#FFFAE6] rounded-lg shadow-lg border border-gray-300 z-50 ">
                 <div className="flex flex-col text-left">
                   <a
@@ -73,10 +65,7 @@ const Navbar: React.FC = () => {
             )}
           </div>
         </div>
-
-       
       </nav>
-    
     </div>
   );
 };
