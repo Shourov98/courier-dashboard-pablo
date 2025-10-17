@@ -8,7 +8,17 @@ export interface RoomInventory {
   items: Item[];
 }
 
-export const rooms = [
+export type RoomName =
+  | "Living Room"
+  | "Dining Room"
+  | "Kitchen"
+  | "Office"
+  | "Bedrooms"
+  | "Bathrooms & Toilet"
+  | "Garden & Shed"
+  | "Boxes & Other";
+
+export const rooms: RoomName[] = [
   "Living Room",
   "Dining Room",
   "Kitchen",

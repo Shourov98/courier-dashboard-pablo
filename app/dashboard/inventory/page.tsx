@@ -4,8 +4,27 @@ import React, { useState } from "react";
 import { Edit, Trash2, Plus, ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 
+// ✅ Define allowed categories as a union type
+type Category =
+  | "Living Room"
+  | "Dining Room"
+  | "Kitchen"
+  | "Office"
+  | "Bedrooms"
+  | "Bathrooms & Toilet"
+  | "Garden & Shed"
+  | "Boxes & Other";
+
+// ✅ Define structure for inventory items
+interface InventoryItem {
+  id: number;
+  item: string;
+  price: number;
+}
+
 export default function InventoryPage() {
-  const categories = [
+  // ✅ Explicitly typed categories array
+  const categories: Category[] = [
     "Living Room",
     "Dining Room",
     "Kitchen",
@@ -16,10 +35,11 @@ export default function InventoryPage() {
     "Boxes & Other",
   ];
 
-  const [selectedCategory, setSelectedCategory] = useState("Living Room");
-  const [startIndex, setStartIndex] = useState(0);
+  // ✅ Properly typed state variables
+  const [selectedCategory, setSelectedCategory] =
+    useState<Category>("Living Room");
+  const [startIndex, setStartIndex] = useState<number>(0);
 
-  // how many visible at once
   const visibleCount = 6;
   const visibleCategories = categories.slice(
     startIndex,
@@ -32,10 +52,11 @@ export default function InventoryPage() {
       Math.min(prev + 1, categories.length - visibleCount)
     );
 
-  const mockInventory = {
+  // ✅ Typed inventory data using Record<Category, InventoryItem[]>
+  const mockInventory: Record<Category, InventoryItem[]> = {
     "Living Room": [
       { id: 1, item: "TV", price: 128 },
-      { id: 2, item: "TV", price: 128 },
+      { id: 2, item: "Table", price: 99 },
     ],
     "Dining Room": [],
     Kitchen: [],
@@ -62,12 +83,12 @@ export default function InventoryPage() {
         </Link>
       </div>
 
-      {/* Category Navigation — same width as table */}
+      {/* Category Navigation */}
       <div className="max-w-full mx-auto mb-6 flex items-center justify-between">
         <button
           onClick={handlePrev}
           disabled={startIndex === 0}
-          className={`p-2 rounded-full  ${
+          className={`p-2 rounded-full ${
             startIndex === 0
               ? "opacity-50 cursor-not-allowed"
               : "hover:bg-gray-100"
@@ -105,7 +126,7 @@ export default function InventoryPage() {
         </button>
       </div>
 
-      {/* Table — same width */}
+      {/* Inventory Table */}
       <div className="max-w-full mx-auto bg-white shadow-sm rounded-xl border border-gray-200 overflow-hidden">
         <table className="w-full text-left border-collapse">
           <thead className="bg-[#FFF7D6] text-gray-800 text-sm font-semibold">
@@ -118,7 +139,7 @@ export default function InventoryPage() {
           </thead>
           <tbody>
             {items.length > 0 ? (
-              items.map((item, index) => (
+              items.map((item: InventoryItem, index: number) => (
                 <tr key={item.id} className="border-t hover:bg-gray-50">
                   <td className="py-3 px-5 text-gray-600">
                     {String(index + 1).padStart(2, "0")}
@@ -154,7 +175,7 @@ export default function InventoryPage() {
         </table>
       </div>
 
-      {/* Pagination */}
+      {/* Pagination (Static Example) */}
       <div className="max-w-5xl mx-auto flex justify-between items-center mt-6 text-sm text-gray-600">
         <span>No of Results {items.length} out of 100</span>
         <div className="flex items-center gap-3">
