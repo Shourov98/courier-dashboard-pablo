@@ -1,7 +1,9 @@
 "use client";
+
+import React from "react";
 import { WhatsappIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { Calendar, Clock, MapPin, Phone, MoreVertical } from "lucide-react";
+import { Calendar, Clock, MapPin, MoreVertical } from "lucide-react";
 
 interface Booking {
   id: string;
@@ -42,26 +44,31 @@ const bookings: Booking[] = [
 
 export default function RecentActivity() {
   return (
-    <div className="flex flex-col gap-8 w-full  mt-12">
-      <h2 className="text-[40px] font-semibold text-[#212121]">
+    <div className="flex flex-col gap-10 w-full mt-12">
+      {/* Header */}
+      <h2 className="text-[32px] lg:text-[40px] font-semibold text-[#212121]">
         Recent Activity
       </h2>
 
-      <div className="flex flex-wrap gap-8">
+      {/* Responsive Card Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 w-full">
         {bookings.map((booking) => (
           <div
             key={booking.id}
-            className="flex flex-col justify-between w-20/41 h-[417px] border border-[#AEAEAE] rounded-xl bg-white p-8"
+            className="flex flex-col justify-between h-full border border-[#E5E5E5] rounded-2xl bg-white p-6 hover:shadow-md transition-shadow duration-200"
           >
-            {/* Header */}
-            <div className="flex justify-between items-start">
-              <h3 className="text-[28px] font-semibold text-[#212121]">
-                Summary
-              </h3>
+            {/* Header Row */}
+            <div className="flex justify-between items-start mb-4">
+              <div>
+                <h3 className="text-xl font-semibold text-[#212121]">
+                  Summary
+                </h3>
+                <p className="text-sm text-gray-500 mt-1">#{booking.id}</p>
+              </div>
 
-              <div className="flex flex-col items-end gap-3">
+              <div className="flex flex-col items-end gap-2">
                 <div
-                  className={`flex items-center gap-2 px-2 py-1 rounded-full ${
+                  className={`flex items-center gap-2 px-3 py-1 rounded-full ${
                     booking.status === "Pending"
                       ? "bg-[#FFF7E8]"
                       : "bg-[#FCEAEA]"
@@ -82,20 +89,19 @@ export default function RecentActivity() {
                         ? "bg-[#B27B0E]"
                         : "bg-[#DD2C2C]"
                     }`}
-                  ></span>
+                  />
                 </div>
-                <span className="text-sm text-[#212121]">#{booking.id}</span>
               </div>
             </div>
 
             {/* Content */}
-            <div className="flex flex-col gap-3">
-              <h4 className="text-[18px] font-semibold text-[#212121]">
+            <div className="flex flex-col gap-4">
+              <h4 className="text-lg font-semibold text-[#212121]">
                 {booking.name}
               </h4>
 
               {/* Date & Time */}
-              <div className="flex items-center gap-8 text-[#717171] text-xs">
+              <div className="flex items-center gap-6 text-[#717171] text-sm">
                 <div className="flex items-center gap-2">
                   <Calendar size={16} />
                   <span>{booking.date}</span>
@@ -107,30 +113,32 @@ export default function RecentActivity() {
               </div>
 
               {/* Phone */}
-              <div className="flex items-center gap-2 text-[#212121]">
-                <HugeiconsIcon icon={WhatsappIcon} size={20} />
-                <span className="text-base">{booking.phone}</span>
+              <div className="flex items-center gap-2 text-[#212121] text-sm">
+                <HugeiconsIcon icon={WhatsappIcon} size={18} />
+                <span>{booking.phone}</span>
               </div>
 
-              {/* Pickup Address */}
-              <div className="flex items-center gap-2 text-[#717171]">
-                <MapPin size={20} />
-                <span className="text-base">{booking.pickup}</span>
-              </div>
-              <MoreVertical size={18} className="text-[#212121] gap-y-0" />
-              {/* Drop Address */}
-              <div className="flex items-center gap-2 text-[#212121]">
-                <MapPin size={20} className="text-[#B59300]" />
-                <span className="text-base">{booking.drop}</span>
+              {/* Pickup */}
+              <div className="flex items-start gap-2 text-[#717171] text-sm">
+                <MapPin size={18} />
+                <span>{booking.pickup}</span>
               </div>
 
-              {/* Price */}
-              <p className="text-right text-[28px] font-semibold text-[#212121] mt-2">
+              <MoreVertical size={16} className="text-gray-400" />
+
+              {/* Drop */}
+              <div className="flex items-start gap-2 text-[#212121] text-sm">
+                <MapPin size={18} className="text-[#B59300]" />
+                <span>{booking.drop}</span>
+              </div>
+            </div>
+
+            {/* Footer */}
+            <div className="mt-6 flex flex-col gap-3">
+              <p className="text-right text-[22px] font-semibold text-[#212121]">
                 {booking.amount}
               </p>
-
-              {/* Button */}
-              <button className="bg-[#EDEDED] text-[#212121] text-base font-medium py-3 rounded-xl hover:bg-gray-200 transition">
+              <button className="bg-[#EDEDED] text-[#212121] text-sm font-medium py-3 rounded-xl hover:bg-gray-200 transition">
                 View Details
               </button>
             </div>

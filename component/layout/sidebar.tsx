@@ -120,7 +120,7 @@ const Sidebar = () => {
     const isActive = activeItem === item.label;
 
     return (
-      <div key={item.label} className="flex flex-col gap-1">
+      <div key={item.label} className="flex flex-col">
         <button
           onClick={() => handleItemClick(item, parentLabel)}
           className={`flex items-center justify-between gap-3 px-6 py-3 rounded-xl font-medium transition-colors

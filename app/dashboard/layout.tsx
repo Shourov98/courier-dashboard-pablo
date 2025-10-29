@@ -8,16 +8,26 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-white">
-      <div className="flex justify-end m-0">
-        <WhatsAppButton number="+880123456789" />
-      </div>
-      <div>
+    <div className="bg-white min-h-screen">
+      {/* ❌ Hide everything below lg */}
+      <div className="hidden lg:flex flex-col min-h-screen">
         <Navbar />
+
+        {/* Sidebar + Main Content */}
+        <div className="flex flex-1">
+          <Sidebar />
+          {/* Main content (offset by sidebar width) */}
+          <main className="flex-1 px-4 bg-[#FFFDF6] overflow-y-auto">
+            {children}
+          </main>
+        </div>
       </div>
-      <div className="flex">
-        <Sidebar />
-        <main className="  p-6 w-full ">{children}</main>
+
+      {/* 🚫 Message for smaller screens */}
+      <div className="lg:hidden flex items-center justify-center h-screen text-center px-6">
+        <p className="text-gray-700 text-lg font-medium">
+          ⚠️ Dashboard is available on laptops or larger screens only.
+        </p>
       </div>
     </div>
   );
