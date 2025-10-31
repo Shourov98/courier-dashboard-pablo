@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -11,62 +10,80 @@ import {
   Notification01Icon,
   UserIcon,
 } from "@hugeicons/core-free-icons";
+import { Menu } from "lucide-react";
 
-const Navbar: React.FC = () => {
+interface NavbarProps {
+  onMenuClick?: () => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ onMenuClick }) => {
   const [isAvatarDropdownOpen, setIsAvatarDropdownOpen] = useState(false);
-
   const router = useRouter();
 
-  const toggleAvatarDropdown = () => {
-    setIsAvatarDropdownOpen(!isAvatarDropdownOpen);
-  };
+  const toggleAvatarDropdown = () => setIsAvatarDropdownOpen((prev) => !prev);
 
   return (
-    <div className="p-0 mb-10 md:relative top-5 md:left-1/2 md:transform md:-translate-x-1/2  md:h-[116px] w-full bg-[#FFFAE6]">
-      <nav className="flex justify-between m-0 p-0 items-center px-4 md:px-16 py-4 md:py-8 w-full h-full bg-[#FFFAE6]">
-        <Image src={Logo} alt="Logo" width={256} />
+    <header className="w-full bg-[#FFFAE6] shadow-sm z-50 relative">
+      <nav className="flex justify-between items-center px-4 md:px-10 py-4 md:py-6">
+        {/* Logo */}
+        <Image
+          src={Logo}
+          alt="Logo"
+          width={200}
+          height={40}
+          className="w-auto h-10 md:h-12"
+          priority
+        />
 
-        {/* Desktop + Medium Menu */}
-        <div className="hidden md:flex items-center gap-16 lg:gap-18 w-auto ">
-          <div>
-            <div
-              className="flex items-center gap-2 px-6 py-3 bg-yellow-400 hover:bg-yellow-500 rounded-xl transition-colors"
+        {/* Desktop Avatar Menu */}
+        <div className="hidden md:flex items-center gap-10 relative">
+          <div className="relative">
+            <button
               onClick={toggleAvatarDropdown}
+              className="flex items-center gap-2 px-5 py-2 bg-yellow-400 hover:bg-yellow-500 rounded-xl transition-colors"
             >
-              <HugeiconsIcon icon={UserIcon} />{" "}
-              <span className="cursor-default">First name </span>
+              <HugeiconsIcon icon={UserIcon} />
+              <span className="cursor-default font-medium text-gray-900">
+                First name
+              </span>
               <HugeiconsIcon
                 icon={ArrowDown01Icon}
-                className={`w-6 h-6 text-gray-900 transition-transform ${
+                className={`w-5 h-5 text-gray-900 transition-transform ${
                   isAvatarDropdownOpen ? "rotate-180" : ""
                 }`}
               />
-            </div>
+            </button>
+
             {isAvatarDropdownOpen && (
-              <div className="absolute top-20 pr-5 mt-2 bg-[#FFFAE6] rounded-lg shadow-lg border border-gray-300 z-50 ">
+              <div className="absolute right-0 mt-2 bg-[#FFFAE6] rounded-lg shadow-lg border border-gray-300 z-50 w-48">
                 <div className="flex flex-col text-left">
-                  <a
-                    href="#"
-                    className=" flex gap-2 px-4 py-3 border-b hover:bg-yellow-50 hover:text-yellow-600 border-[#AEAEAE]"
+                  <button
+                    className="flex items-center gap-2 px-4 py-3 border-b border-[#AEAEAE] hover:bg-yellow-50 hover:text-yellow-600"
+                    onClick={() => router.push("/dashboard/notifications")}
                   >
                     <HugeiconsIcon icon={Notification01Icon} /> Notifications
-                  </a>
-                  <a
-                    href="/home"
-                    className="px-4  py-3 rounded-b-lg hover:bg-yellow-50 hover:text-yellow-600"
+                  </button>
+                  <button
+                    onClick={() => router.push("/auth/signin")}
+                    className="flex items-center gap-2 px-4 py-3 hover:bg-yellow-50 hover:text-yellow-600 rounded-b-lg"
                   >
-                    <span className="flex gap-2">
-                      {" "}
-                      <HugeiconsIcon icon={Logout01Icon} /> Logout
-                    </span>
-                  </a>
+                    <HugeiconsIcon icon={Logout01Icon} /> Logout
+                  </button>
                 </div>
               </div>
             )}
           </div>
         </div>
+
+        {/* Mobile Hamburger */}
+        <button
+          onClick={onMenuClick}
+          className="md:hidden flex items-center justify-center p-2 rounded-lg bg-yellow-400 hover:bg-yellow-500 transition-colors"
+        >
+          <Menu className="w-6 h-6 text-gray-900" />
+        </button>
       </nav>
-    </div>
+    </header>
   );
 };
 

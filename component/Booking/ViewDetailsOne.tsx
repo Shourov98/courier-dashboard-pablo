@@ -1,6 +1,10 @@
 "use client";
 
-import { ArrowRight01Icon, ArrowRight02Icon, Download01Icon } from "@hugeicons/core-free-icons";
+import {
+  ArrowRight01Icon,
+  ArrowRight02Icon,
+  Download01Icon,
+} from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
@@ -74,7 +78,6 @@ interface BookingData {
 const BookingDetails: React.FC = () => {
   const [bookingData, setBookingData] = useState<BookingData | null>(null);
   const [privateNotes, setPrivateNotes] = useState("");
- 
 
   useEffect(() => {
     const mockData: BookingData = {
@@ -204,15 +207,12 @@ const BookingDetails: React.FC = () => {
             icon={ArrowRight01Icon}
             className="w-6 h-6 text-[#212121]"
           />
-          <span className="font-normal text-base leading-6 text-black">
+          <span className="font-bold text-base leading-6 text-black">
             View Details
           </span>
         </div>
 
-        <h1
-          className="font-semibold text-[40px] leading-[48px] text-[#08002B] m-0"
-          style={{ fontFamily: "Inter" }}
-        >
+        <h1 className="font-semibold text-[40px] leading-[48px] text-[#08002B] m-0">
           Bookings
         </h1>
 
@@ -647,61 +647,68 @@ const BookingDetails: React.FC = () => {
               </div>
             </div>
           </div>
-          {bookingData.status==="Pending" && (<div className="flex flex-col gap-3 mt-6">
-            <h3 className="font-semibold text-lg leading-[26px] text-[#212121] m-0">
-              Not Listed in Stock
-            </h3>
-            <div className="border border-[#AEAEAE] rounded-xl p-3 flex flex-col gap-3">
-              <div className="flex justify-between gap-3">
-                <span className="font-medium text-base leading-6 text-[#717171]">
-                  Item Name
-                </span>
-                <span className="font-medium text-base leading-6 text-[#717171]">
-                  Item Price
-                </span>
-              </div>
-              {bookingData.notListedInStock.map((item, i) => (
-                <div key={i} className="flex justify-between gap-3">
-                  
-                  <span>{item.name}</span>
-                 
-                  <span className=" text-base border border-[#AEAEAE] rounded-xl px-3 py-2 text-center">€ {item.price}</span>
+          {bookingData.status === "Pending" && (
+            <div className="flex flex-col gap-3 mt-6">
+              <h3 className="font-semibold text-lg leading-[26px] text-[#212121] m-0">
+                Not Listed in Stock
+              </h3>
+              <div className="border border-[#AEAEAE] rounded-xl p-3 flex flex-col gap-3">
+                <div className="flex justify-between gap-3">
+                  <span className="font-medium text-base leading-6 text-[#717171]">
+                    Item Name
+                  </span>
+                  <span className="font-medium text-base leading-6 text-[#717171]">
+                    Item Price
+                  </span>
                 </div>
-              ))}
-              
+                {bookingData.notListedInStock.map((item, i) => (
+                  <div key={i} className="flex justify-between gap-3">
+                    <span>{item.name}</span>
+
+                    <span className=" text-base border border-[#AEAEAE] rounded-xl px-3 py-2 text-center">
+                      € {item.price}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>)}
+          )}
         </div>
-        
-       { bookingData.status !="Pending" && bookingData.status!= "Refunded" &&( <div className="flex gap-8 mt-8 flex-wrap justify-end">
-          <button className="flex items-center justify-center gap-2 px-6 py-3 bg-[#EDEDED] rounded-xl">
-            <HugeiconsIcon icon={Download01Icon} />
-            <span className="font-medium text-base text-[#212121]">
-               Download Invoice
-            </span>
-          </button>
-          <button className="flex items-center justify-center px-6 py-3 bg-[#EDEDED] rounded-xl">
-            <span className="font-medium text-base text-[#AEAEAE]">
-              Send Email
-            </span>
-          </button>
-        </div>)}
 
-        {bookingData.status==="Refunded" &&(<div className="w-full flex justify-end"><button className="flex items-center justify-center gap-2 px-6 py-3 bg-[#EDEDED] rounded-xl">
-           
-            <span className="font-medium text-base text-[#AEAEAE]">
-              Refund is Handled
-            </span>
-          </button></div>)}
-
-
-        {bookingData.status==="Pending" &&(<div className="flex gap-8 flex-wrap justify-end">
-        <button className="self-end flex items-center justify-center px-6 py-3 bg-[#FFCF00] rounded-xl">
+        {bookingData.status != "Pending" &&
+          bookingData.status != "Refunded" && (
+            <div className="flex gap-8 mt-8 flex-wrap justify-end">
+              <button className="flex items-center justify-center gap-2 px-6 py-3 bg-[#EDEDED] rounded-xl">
+                <HugeiconsIcon icon={Download01Icon} />
                 <span className="font-medium text-base text-[#212121]">
-                  Send
+                  Download Invoice
                 </span>
-        </button>
-        </div>)}
+              </button>
+              <button className="flex items-center justify-center px-6 py-3 bg-[#EDEDED] rounded-xl">
+                <span className="font-medium text-base text-[#AEAEAE]">
+                  Send Email
+                </span>
+              </button>
+            </div>
+          )}
+
+        {bookingData.status === "Refunded" && (
+          <div className="w-full flex justify-end">
+            <button className="flex items-center justify-center gap-2 px-6 py-3 bg-[#EDEDED] rounded-xl">
+              <span className="font-medium text-base text-[#AEAEAE]">
+                Refund is Handled
+              </span>
+            </button>
+          </div>
+        )}
+
+        {bookingData.status === "Pending" && (
+          <div className="flex gap-8 flex-wrap justify-end">
+            <button className="self-end flex items-center justify-center px-6 py-3 bg-[#FFCF00] rounded-xl">
+              <span className="font-medium text-base text-[#212121]">Send</span>
+            </button>
+          </div>
+        )}
 
         <div className="flex flex-col gap-3">
           <h3 className="font-medium text-lg leading-[26px] text-[#212121] m-0">

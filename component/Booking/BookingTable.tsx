@@ -65,11 +65,11 @@ export default function Bookings() {
   );
 
   return (
-    <div className="w-full flex flex-col items-start gap-8">
+    <div className="w-full flex flex-col items-start py-5 gap-8">
       {/* Header Section */}
       <div className="flex justify-between items-center w-full h-12 gap-6">
         <div className="flex items-center">
-          <h2 className="font-['Inter'] font-semibold text-[40px] leading-[48px] text-[#08002B]">
+          <h2 className="font-semibold text-[40px] leading-[48px] text-[#08002B]">
             Bookings
           </h2>
         </div>
@@ -208,15 +208,17 @@ export default function Bookings() {
               {/* Actions */}
               <div className="flex items-center justify-center gap-8 w-[200px] text-[#212121]">
                 <Link href="/dashboard/bookings/234/edit">
-                <HugeiconsIcon
-                  icon={PencilEdit02Icon}
-                  className="w-6 h-6 cursor-pointer hover:text-blue-600"
-                />
+                  <HugeiconsIcon
+                    icon={PencilEdit02Icon}
+                    className="w-6 h-6 cursor-pointer hover:text-blue-600"
+                  />
                 </Link>
-                <Link href="/dashboard/bookings/234"><HugeiconsIcon
-                  icon={ViewIcon}
-                  className="w-6 h-6 cursor-pointer hover:text-green-600"
-                /></Link>
+                <Link href="/dashboard/bookings/234">
+                  <HugeiconsIcon
+                    icon={ViewIcon}
+                    className="w-6 h-6 cursor-pointer hover:text-green-600"
+                  />
+                </Link>
                 <HugeiconsIcon
                   icon={Delete02Icon}
                   className="w-6 h-6 cursor-pointer text-red-600"
@@ -270,7 +272,7 @@ export default function Bookings() {
                   : "text-[#212121] bg-[#FDF9EE] hover:bg-[#FFE9B3]"
               }`}
             >
-             <ChevronRightIcon className="w-6 h-6" />
+              <ChevronRightIcon className="w-6 h-6" />
             </button>
           </div>
         </div>

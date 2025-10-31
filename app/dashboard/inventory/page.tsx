@@ -175,20 +175,22 @@ export default function InventoryPage() {
         </table>
       </div>
 
-      {/* Pagination (Static Example) */}
-      <div className="max-w-5xl mx-auto flex justify-between items-center mt-6 text-sm text-gray-600">
-        <span>No of Results {items.length} out of 100</span>
-        <div className="flex items-center gap-3">
-          <button className="border rounded-full p-2 hover:bg-gray-100">
+      {/* FOOTER */}
+      <div className="flex flex-col md:flex-row justify-between items-center mt-6 text-sm text-gray-500">
+        <p>No of Results {items.length} out of 100</p>
+
+        {/* Pagination */}
+        <div className="flex items-center gap-2 mt-3 md:mt-0">
+          <button className="border border-gray-300 rounded-md p-2 hover:bg-gray-100">
             <ChevronLeft size={18} />
           </button>
-          <button className="border rounded-full p-2 bg-[#FFCF00] text-black font-medium">
+          <button className="border border-[#FFCF00] bg-[#FFCF00]/20 text-[#0D1240] rounded-md px-3 py-1 font-medium">
             1
           </button>
-          <button className="border rounded-full p-2 hover:bg-gray-100">
+          <button className="border border-gray-300 rounded-md px-3 py-1 hover:bg-gray-100">
             2
           </button>
-          <button className="border rounded-full p-2 hover:bg-gray-100">
+          <button className="border border-gray-300 rounded-md p-2 hover:bg-gray-100">
             <ChevronRight size={18} />
           </button>
         </div>

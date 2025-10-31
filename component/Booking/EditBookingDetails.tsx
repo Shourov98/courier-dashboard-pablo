@@ -95,10 +95,7 @@ const EditBookingDetails: React.FC = () => {
             </span>
           </div>
           {/* head Section */}
-          <h1
-            className="font-semibold text-[40px] leading-[48px] text-[#08002B] m-0"
-            style={{ fontFamily: "Inter" }}
-          >
+          <h1 className="font-semibold text-[40px] leading-[48px] text-[#08002B] m-0">
             Bookings
           </h1>
 
@@ -662,7 +659,6 @@ const EditBookingDetails: React.FC = () => {
               </div>
             </div>
           </div>
-
 
           {/* Save Button */}
 

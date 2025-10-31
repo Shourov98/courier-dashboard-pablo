@@ -120,7 +120,7 @@ const Sidebar = () => {
     const isActive = activeItem === item.label;
 
     return (
-      <div key={item.label} className="flex flex-col">
+      <div key={item.label} className="flex flex-col gap-1">
         <button
           onClick={() => handleItemClick(item, parentLabel)}
           className={`flex items-center justify-between gap-3 px-6 py-3 rounded-xl font-medium transition-colors
@@ -158,7 +158,7 @@ const Sidebar = () => {
   };
 
   const SidebarContent = () => (
-    <aside className="w-full sm:w-72 md:w-80 lg:w-[336px] min-h-screen flex flex-col gap-6 p-4 bg-white shadow-sm font-[Poppins]">
+    <aside className="w-full sm:w-72 md:w-80 lg:w-[336px] min-h-screen flex flex-col gap-4 p-4 bg-white shadow-sm font-[Poppins]">
       <Section title="Main">
         {menu.main.map((item) => renderItem(item))}
       </Section>
@@ -192,14 +192,6 @@ const Sidebar = () => {
       >
         <SidebarContent />
       </div>
-
-      {/* Backdrop for mobile */}
-      {isOpen && (
-        <div
-          onClick={() => setIsOpen(false)}
-          className="fixed inset-0 bg-black/40 sm:hidden"
-        />
-      )}
     </div>
   );
 };
